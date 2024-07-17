@@ -1,4 +1,4 @@
-package ns
+package main
 
 import (
 	"flag"
@@ -25,4 +25,10 @@ func main() {
 		flag.Usage()
 		os.Exit(1)
 	}
+
+	if _, err := os.Stat(filename); os.IsNotExist(err) {
+		fmt.Println("Error: File does not exist.")
+		os.Exit(1)
+	}
+
 }
