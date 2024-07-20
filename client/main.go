@@ -7,11 +7,12 @@ import (
 	"os"
 )
 
+var filename string
+
 func main() {
-	filenameSource := "testa.txt"
 	filenameDest := "testb.txt"
 	serverAddress := "localhost:8080"
-	sendFile(filenameSource, serverAddress)
+	sendFile(filename, serverAddress)
 	grabFile(filenameDest, serverAddress)
 }
 

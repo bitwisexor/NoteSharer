@@ -1,14 +1,21 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io"
 	"net"
 	"os"
 )
 
+var filename string
+
+func init() {
+	flag.StringVar(&filename, "f", "", "filename to read")
+}
+
 func main() {
-	filenameSource := "testa.txt"
+	flag.Parse()
 	filenameDest := "testb.txt"
 	serverAddress := "127.0.0.1:8080"
 
@@ -19,7 +26,7 @@ func main() {
 	defer listener.Close()
 
 	receiveFile(listener, filenameDest)
-	sendFile(listener, filenameSource)
+	sendFile(listener, filename)
 }
 
 func receiveFile(listener net.Listener, dest string) {
